@@ -120,3 +120,38 @@ Route::get('max4', function () {
     });
 });
 
+// chunk
+Route::get('chunk', function (){
+    $collection = collect([1, 2, 3, 4, 5, 6, 7]);
+
+    $chunks = $collection->chunk(3);
+
+   // $chunks = $chunks->toArray();
+
+    foreach ($chunks as $chunk)
+    {
+        echo $chunk .'</br>';
+    }
+});
+
+
+// collapse
+Route::get('collapse', function (){
+    $collection = collect([[1, 2, 3], [4, 5, 6, 2], [7, 8, 9]]);
+
+    $collapsed = $collection->collapse();
+
+    return $collapsed->all();
+});
+
+
+// countBy
+Route::get('countBy', function () {
+    $collection = collect(['alice@gmail.com', 'bob@yahoo.com', 'carlos@gmail.com']);
+
+    $counted = $collection->countBy(function ($email) {
+        return substr(strrchr($email, "@"), 1);
+    });
+
+    return $counted->all();
+});
