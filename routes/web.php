@@ -155,3 +155,27 @@ Route::get('countBy', function () {
 
     return $counted->all();
 });
+
+
+// pluck
+Route::get('pluck', function () {
+    $collection = collect([
+        ['product_id' => 'prod-100', 'name' => 'Desk', 'price' => 100],
+        ['product_id' => 'prod-200', 'name' => 'Chair', 'price' => 200],
+    ]);
+
+    $plucked = $collection->pluck('price', 'name');
+
+    return $plucked->all();
+});
+
+
+
+
+
+
+
+
+
+
+
